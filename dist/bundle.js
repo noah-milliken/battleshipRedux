@@ -1,0 +1,1 @@
+document.body.appendChild(function(){const t=document.createElement("div");return t.textContent="martians",t.classList.add("hello"),t}());
