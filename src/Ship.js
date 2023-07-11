@@ -1,4 +1,4 @@
-const Ship = (name, length) => {
+const Ship = (name, length, piece) => {
   let hits = length;
   let isSunk = false;
   const getHits = () => hits;
@@ -15,9 +15,11 @@ const Ship = (name, length) => {
   return {
     name,
     length,
+    piece,
     getHits,
     getIsSunk,
     hit,
   };
 };
+
 export default Ship;

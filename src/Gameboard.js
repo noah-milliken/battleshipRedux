@@ -30,14 +30,13 @@ const Gameboard = () => {
   const placePiece = (y, x, ship, axis = true) => {
     const { length, piece } = ship;
 
-    // Check if the ship length exceeds the boundaries in any direction
     if (axis) {
       if (length + y >= 10) {
         return false;
       }
       for (let i = y; i < length + y; i += 1) {
         if (board[x][i]) {
-          return false; // Overlapping with an existing ship
+          return false;
         }
       }
       for (let i = y; i < length + y; i += 1) {
@@ -50,7 +49,7 @@ const Gameboard = () => {
       }
       for (let i = x; i < x + length; i += 1) {
         if (board[i][y]) {
-          return false; // Overlapping with an existing ship
+          return false;
         }
       }
       for (let i = x; i < x + length; i += 1) {
@@ -60,7 +59,7 @@ const Gameboard = () => {
     }
 
     ships.push(ship);
-    return true; // Placement successful
+    return true;
   };
 
   const populateBoard = (startShips) => {
@@ -81,6 +80,7 @@ const Gameboard = () => {
   };
 
   const receiveAttack = (x, y) => {
+    console.log(x);
     const target = board[x][y];
     if (target) {
       const ship = ships.find((s) => s.piece === target);
