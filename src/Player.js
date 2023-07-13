@@ -1,25 +1,34 @@
 import Gameboard from './Gameboard';
 
-const Player = (isComputer) => {
+const Player = (name, isComputer) => {
   const playerBoard = Gameboard();
 
-  const getRandomCoord = () => Math.floor(Math.random() * 10);
   playerBoard.createGameboard();
   playerBoard.populateBoard(playerBoard.startingPieces);
-  const takeTurn = () => {
-    if (computer) {
-      xCoord = getRandomCoord();
-      yCoord = getRandomCoord();
-      attackEnemy(opponent, xCoord, yCoord);
+  console.table(playerBoard.board);
+  const getRandomCoord = () => Math.floor(Math.random() * 10);
+  const computerTurn = (opponentBoard) => {
+    let x;
+    let y;
+    do {
+      x = getRandomCoord();
+      y = getRandomCoord();
+    } while (opponentBoard.board[x][y]);
+    opponentBoard.receiveAttack(x, y);
+  };
+  const humanTurn = (opponentBoard) => {
+    let x = parseInt(prompt('Enter x coord:'));
+    let y = parseInt(prompt('Enter y coord:'));
+
+    opponentBoard.receiveAttack(x, y);
+  };
+  const takeTurn = (opponentBoard) => {
+    if (isComputer) {
+      computerTurn();
     } else {
-      xCoord = prompt('Enter a num between 0-9');
-      yCoord = prompt('Enter a num between 0-9');
-      attackEnemy(opponent, xCoord, yCoord);
+      humanTurn();
     }
   };
-  const attackEnemy = (opponent, x, y) => {
-    return opponent.playerBoard.receiveAttack(x, y);
-  };
-  return { playerBoard, attackEnemy };
+  return { playerBoard, takeTurn };
 };
 export default Player;
