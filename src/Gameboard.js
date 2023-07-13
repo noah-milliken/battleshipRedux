@@ -6,6 +6,7 @@ const Gameboard = () => {
   const getAllSunk = () => allSunk;
   const setAllSunk = () => {
     allSunk = true;
+    console.log('all Sunk');
   };
   const getTotalHits = () => totalHits;
   const startingPieces = [
@@ -105,7 +106,7 @@ const Gameboard = () => {
     if (target) {
       const ship = ships.find((s) => s.piece === target);
       if (ship) {
-        board[x][y] = '᪥';
+        board[x][y] = 'X';
         ship.hit();
         totalHits -= 1;
         if (totalHits <= 0) {
@@ -113,7 +114,7 @@ const Gameboard = () => {
         }
       }
     } else {
-      board[x][y] = '০';
+      board[x][y] = '0';
     }
   };
 
