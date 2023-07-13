@@ -1,11 +1,10 @@
 import Gameboard from './Gameboard';
 
-const Player = (name, isComputer) => {
+const Player = (isComputer) => {
   const playerBoard = Gameboard();
 
   playerBoard.createGameboard();
   playerBoard.populateBoard(playerBoard.startingPieces);
-  console.table(playerBoard.board);
   const getRandomCoord = () => Math.floor(Math.random() * 10);
   const computerTurn = (opponentBoard) => {
     let x;
@@ -22,13 +21,13 @@ const Player = (name, isComputer) => {
 
     opponentBoard.receiveAttack(x, y);
   };
-  const takeTurn = (opponentBoard) => {
+  const turn = (opponentBoard) => {
     if (isComputer) {
       computerTurn();
     } else {
       humanTurn();
     }
   };
-  return { playerBoard, takeTurn };
+  return { playerBoard, turn };
 };
 export default Player;

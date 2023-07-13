@@ -1,23 +1,20 @@
 import Player from './Player';
 
 const Game = () => {
-  let currentPlyer;
-  let gameOver = false;
-  let winner;
+  let currentPlayer;
+  let human;
+  let computer;
 
   const startGame = () => {
-    const human = Player('human', false);
-    const computer = Player('computer', true);
-    currentPlyer = human;
+    human = Player('human', false);
+    computer = Player('computer', true);
+    currentPlayer = human;
   };
-  const game = () => {
-    while (!activePlayer.playerBoard.getAllSunk()) {
-      activePlayer.takeTurn(opponent.playerBoard);
-      activePlayer = activePlayer === human ? computer : human;
-      opponent = opponent === computer ? human : computer;
-    }
+  const takeTurn = () => {
+    currentPlayer.takeTurn();
+    currentPlayer = currentPlayer === human ? computer : human;
   };
 
-  return { startGame, game };
+  return { startGame, takeTurn };
 };
 export default Game;
