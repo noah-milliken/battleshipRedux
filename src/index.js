@@ -1,13 +1,11 @@
 import Game from './Game';
 
-const gameInstance = Game();
-console.log(gameInstance);
+const initiateGame = Game();
+initiateGame.startGame();
 function component() {
   const element = document.createElement('div');
 
-  // Lodash, currently included via a script, is required for this line to work
-  element.textContent = 'boobs';
-  element.classList.add('hello');
+  element.textContent = 'Frogs';
 
   return element;
 }

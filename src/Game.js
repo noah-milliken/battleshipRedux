@@ -5,24 +5,12 @@ const Game = () => {
   let opponent;
   const human = Player(false);
   const computer = Player(true);
-
+  console.log(human);
   const startGame = () => {
     activePlayer = human;
     opponent = computer;
   };
 
-  const game = () => {
-    activePlayer = activePlayer === human ? computer : human;
-    opponent = opponent === computer ? human : computer;
-    activePlayer.takeTurn(opponent.playerBoard);
-    // while (activePlayer.gameboard.getTotalHits() !== 17) {
-    //   // if (activePlayer.gameboard.getTotalHits() !== 17) {
-    //   //   console.log('Game Over');
-    //   //   break;
-    //   // }
-    // }
-  };
-  startGame();
-  game();
+  return { startGame };
 };
 export default Game;
