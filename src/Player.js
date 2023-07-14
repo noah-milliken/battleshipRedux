@@ -16,26 +16,24 @@ const Player = (name, isComputer) => {
       x = getRandomCoord();
       y = getRandomCoord();
     } while (playerBoard.board[x][y] !== null);
-    playerBoard.receiveAttack(x, y);
+    console.log('hello');
+    opponentBoard.receiveAttack(x, y);
   };
   const humanTurn = (opponentBoard) => {
-    const getRandomCoord = () => Math.floor(Math.random() * 10);
     let x;
     let y;
     do {
-      x = getRandomCoord();
-      y = getRandomCoord();
+      x = parseInt(prompt('Enter x coord:'));
+      y = parseInt(prompt('Enter y coord:'));
     } while (playerBoard.board[x][y] !== null);
-    playerBoard.receiveAttack(x, y);
-    // let x = parseInt(prompt('Enter x coord:'));
-    // let y = parseInt(prompt('Enter y coord:'));
-    // playerBoard.receiveAttack(x, y);
+    console.log('goodbye');
+    opponentBoard.receiveAttack(x, y);
   };
   const turn = (opponentBoard) => {
     if (isComputer) {
-      computerTurn();
+      computerTurn(opponentBoard);
     } else {
-      humanTurn();
+      humanTurn(opponentBoard);
     }
   };
   return { playerBoard, turn };

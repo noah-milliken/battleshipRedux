@@ -14,21 +14,20 @@ const Game = () => {
   };
 
   const checkGameOver = () => {
-    if (
-      human.playerBoard.board.getAllsunk === true ||
-      computer.playerBoard.board.getAllsunk == true
-    ) {
-      return (gameOver = true);
+    const humanBoardSunk = human.playerBoard.getAllsunk();
+    const computerBoardSunk = computer.playerBoard.getAllsunk();
+    if (humanBoardSunk) {
+      gameOver = true;
+    }
+    if (computerBoardSunk) {
+      gameOver = true;
     }
   };
   const takeTurn = () => {
     while (!gameOver) {
       currentPlayer.turn(opponent.playerBoard);
-      console.log('turn complete');
       currentPlayer = currentPlayer === human ? computer : human;
-      console.log(currentPlayer);
       opponent = opponent === computer ? human : computer;
-      console.log('switched');
       console.table(human.playerBoard.board);
       console.table(computer.playerBoard.board);
       checkGameOver();
