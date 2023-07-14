@@ -5,7 +5,7 @@ const Game = () => {
   let opponent;
   let human;
   let computer;
-  let gameOver = false;
+  let gameOver = 0;
   const startGame = () => {
     human = Player('human', false);
     computer = Player('computer', true);
@@ -24,13 +24,13 @@ const Game = () => {
     }
   };
   const takeTurn = () => {
-    while (!gameOver) {
+    while (gameOver < 100) {
       currentPlayer.turn(opponent.playerBoard);
       currentPlayer = currentPlayer === human ? computer : human;
       opponent = opponent === computer ? human : computer;
-      console.table(human.playerBoard.board);
-      console.table(computer.playerBoard.board);
-      checkGameOver();
+
+      gameOver++;
+      // checkGameOver();
     }
   };
 
