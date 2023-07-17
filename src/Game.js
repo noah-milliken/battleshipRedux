@@ -1,4 +1,5 @@
 import Player from './Player';
+import gameGrid from '../src/gameGrid';
 
 const Game = () => {
   let currentPlayer;
@@ -9,6 +10,9 @@ const Game = () => {
   const startGame = () => {
     human = Player('human', false);
     computer = Player('computer', true);
+    console.log(human);
+    const humanBoard = boardComponent(human);
+    const computerBoard = boardComponent(computer);
     currentPlayer = human;
     opponent = computer;
   };
@@ -33,7 +37,13 @@ const Game = () => {
       // checkGameOver();
     }
   };
+  const boardComponent = (player) => {
+    const gameContainer = document.getElementById('game-container');
+    const humanBoardHtml = gameGrid(player);
 
-  return { startGame, takeTurn, checkGameOver };
+    gameContainer.innerHTML += humanBoardHtml;
+  };
+
+  return { startGame, takeTurn, checkGameOver, boardComponent };
 };
 export default Game;

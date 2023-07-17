@@ -16,28 +16,9 @@ const Gameboard = () => {
     ['submarine', 3, 'S'],
     ['patrol boat', 2, 'P'],
   ];
-  const board = [
-    // // remove on publish
-    // [null, null, null, null, null, null, null, null, null, null],
-    // [null, null, null, null, 'D', 'D', 'D', null, null, null],
-    // [null, null, 'C', null, null, null, null, null, null, null],
-    // [null, null, 'C', null, null, null, null, null, null, null],
-    // [null, null, 'C', null, null, null, 'B', null, null, null],
-    // [null, null, 'C', null, null, null, 'B', 'P', null, null],
-    // [null, null, 'C', null, null, null, 'B', 'P', null, 'S'],
-    // [null, null, null, null, null, null, 'B', null, null, 'S'],
-    // [null, null, null, null, null, null, null, null, null, 'S'],
-    // [null, null, null, null, null, null, null, null, null, null],
-  ];
+  const board = [];
 
-  const ships = [
-    // remove on publish
-    // Ship('carrier', 5, 'C'),
-    // Ship('battleship', 4, 'B'),
-    // Ship('destroyer', 3, 'D'),
-    // Ship('submarine', 3, 'S'),
-    // Ship('patrol boat', 2, 'P'),
-  ];
+  const ships = [];
 
   const createGameboard = () => {
     for (let i = 0; i < 10; i += 1) {
@@ -57,7 +38,7 @@ const Gameboard = () => {
         return false;
       }
       for (let i = y; i < length + y; i += 1) {
-        if (board[x][i]) {
+        if (board[x][i] && board[x][i]) {
           return false;
         }
       }
@@ -69,13 +50,16 @@ const Gameboard = () => {
       if (length + x >= 10) {
         return false;
       }
+
       for (let i = x; i < x + length; i += 1) {
-        if (board[i][y]) {
+        if (board[i] && board[i][y]) {
           return false;
         }
       }
       for (let i = x; i < x + length; i += 1) {
-        board[i][y] = piece;
+        if (board[i]) {
+          board[i][y] = piece;
+        }
       }
       board[x + length - 1][y] = piece;
     }

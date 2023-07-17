@@ -2,9 +2,7 @@ import Gameboard from './Gameboard';
 
 const Player = (name, isComputer) => {
   const playerName = name;
-  console.log(playerName);
   const playerBoard = Gameboard();
-
   playerBoard.createGameboard();
   playerBoard.populateBoard(playerBoard.startingPieces);
 
@@ -36,6 +34,6 @@ const Player = (name, isComputer) => {
       humanTurn(opponentBoard);
     }
   };
-  return { playerBoard, turn };
+  return { playerBoard, turn, playerName };
 };
 export default Player;
