@@ -5,7 +5,7 @@ const Player = (name, isComputer) => {
   const playerBoard = Gameboard();
   playerBoard.createGameboard();
   playerBoard.populateBoard(playerBoard.startingPieces);
-
+  console.table(playerBoard.board);
   const computerTurn = (opponentBoard) => {
     const getRandomCoord = () => Math.floor(Math.random() * 10);
     let x;
@@ -17,23 +17,17 @@ const Player = (name, isComputer) => {
     console.log('hello');
     opponentBoard.receiveAttack(x, y);
   };
-  const humanTurn = (opponentBoard) => {
-    let x;
-    let y;
-    do {
-      x = parseInt(prompt('Enter x coord:'));
-      y = parseInt(prompt('Enter y coord:'));
-    } while (playerBoard.board[x][y] !== null);
-    console.log('goodbye');
+  const humanTurn = (opponentBoard, x, y) => {
+    console.log('Human selected:', x, y);
     opponentBoard.receiveAttack(x, y);
   };
   const turn = (opponentBoard) => {
     if (isComputer) {
       computerTurn(opponentBoard);
     } else {
-      humanTurn(opponentBoard);
+      return;
     }
   };
-  return { playerBoard, turn, playerName };
+  return { playerBoard, turn, playerName, isComputer, humanTurn };
 };
 export default Player;

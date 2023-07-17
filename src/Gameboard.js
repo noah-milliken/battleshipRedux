@@ -98,7 +98,7 @@ const Gameboard = () => {
         }
       }
     } else {
-      board[x][y] = '0';
+      board[x][y] = 'O';
     }
   };
 

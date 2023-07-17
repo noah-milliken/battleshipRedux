@@ -6,20 +6,21 @@ const Game = () => {
   let opponent;
   let human;
   let computer;
-  let gameOver = 0;
+  let gameOver = false;
+
   const startGame = () => {
     human = Player('human', false);
     computer = Player('computer', true);
-    console.log(human);
-    const humanBoard = boardComponent(human);
-    const computerBoard = boardComponent(computer);
     currentPlayer = human;
     opponent = computer;
+    boardComponent(human);
+    boardComponent(computer);
   };
 
   const checkGameOver = () => {
-    const humanBoardSunk = human.playerBoard.getAllsunk();
-    const computerBoardSunk = computer.playerBoard.getAllsunk();
+    const humanBoardSunk = human.playerBoard.getAllSunk();
+    console.log(humanBoardSunk);
+    const computerBoardSunk = computer.playerBoard.getAllSunk();
     if (humanBoardSunk) {
       gameOver = true;
     }
@@ -27,21 +28,24 @@ const Game = () => {
       gameOver = true;
     }
   };
-  const takeTurn = () => {
-    while (gameOver < 100) {
+  const takeTurn = (x, y) => {
+    if (currentPlayer.isComputer) {
       currentPlayer.turn(opponent.playerBoard);
-      currentPlayer = currentPlayer === human ? computer : human;
-      opponent = opponent === computer ? human : computer;
-
-      gameOver++;
-      // checkGameOver();
+      checkGameOver();
+      if (!gameOver) {
+        currentPlayer = currentPlayer === human ? computer : human;
+        opponent = opponent === computer ? human : computer;
+        takeTurn();
+      }
+    } else {
+      currentPlayer.turn(opponent.playerBoard, x, y);
     }
   };
   const boardComponent = (player) => {
     const gameContainer = document.getElementById('game-container');
-    const humanBoardHtml = gameGrid(player);
+    const boardElement = gameGrid(player.playerBoard, player, takeTurn);
 
-    gameContainer.innerHTML += humanBoardHtml;
+    gameContainer.appendChild(boardElement);
   };
 
   return { startGame, takeTurn, checkGameOver, boardComponent };
