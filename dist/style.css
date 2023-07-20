@@ -1,0 +1,36 @@
+body{
+    color: cornsilk;
+    background-color: darkgray;
+}
+.game-container{
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    display: flex;
+}
+.gameboard{
+    height: 500px;
+    width: 500px;
+    display: grid; 
+    grid-template-columns: repeat(10, 1fr); 
+    grid-template-rows: repeat(10, 1fr); 
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
+    gap: 3px;
+}
+.cell{
+   
+    border: solid 1px greenyellow;
+
+}
+
+.occupied {
+    background-color: bisque;
+}
+
+.hit{
+    background-color: tomato;
+}
+.miss{
+    background-color: steelblue;
+}

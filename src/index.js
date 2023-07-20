@@ -1,4 +1,11 @@
-import Game from './Game';
-const game = Game();
-game.startGame();
-game.takeTurn();
+import Player from './Player';
+import Gameboard from './Gameboard';
+import View from './view';
+View.createGameboard();
+const player1 = Player();
+const player1GameBoard = Gameboard();
+const player2 = Player();
+const player2GameBoard = Gameboard();
+console.table(player1GameBoard.board);
+View.populateBoard(player1GameBoard.board);
+View.renderAttack(player1, player1GameBoard, player2, player2GameBoard);

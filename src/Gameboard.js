@@ -29,8 +29,9 @@ const Gameboard = () => {
       board.push(row);
     }
   };
+  createGameboard();
 
-  const placePiece = (y, x, ship, axis = true) => {
+  const placePiece = (x, y, ship, axis = true) => {
     const { length, piece } = ship;
 
     if (axis) {
@@ -84,8 +85,9 @@ const Gameboard = () => {
       }
     }
   };
+  populateBoard(startingPieces);
 
-  const receiveAttack = (x, y) => {
+  const receiveAttack = (y, x) => {
     const target = board[x][y];
     if (target) {
       const ship = ships.find((s) => s.piece === target);
@@ -105,14 +107,9 @@ const Gameboard = () => {
   return {
     board,
     ships,
-    startingPieces,
-    createGameboard,
-    placePiece,
     receiveAttack,
-    populateBoard,
     getTotalHits,
     getAllSunk,
-    allSunk,
   };
 };
 export default Gameboard;
