@@ -6,6 +6,7 @@ const Gameboard = () => {
   const getAllSunk = () => allSunk;
   const setAllSunk = () => {
     allSunk = true;
+    console.log(getTotalHits());
     console.log('all Sunk');
   };
   const getTotalHits = () => totalHits;
@@ -16,11 +17,12 @@ const Gameboard = () => {
     ['submarine', 3, 'S'],
     ['patrol boat', 2, 'P'],
   ];
-  const board = [];
+  let board = [];
 
-  const ships = [];
+  let ships = [];
 
   const createGameboard = () => {
+    board = [];
     for (let i = 0; i < 10; i += 1) {
       const row = [];
       for (let j = 0; j < 10; j += 1) {
@@ -70,6 +72,7 @@ const Gameboard = () => {
   };
 
   const populateBoard = (startShips) => {
+    ships = [];
     const randCoord = () => Math.floor(Math.random() * 10);
 
     for (let i = 0; i < startShips.length; i += 1) {
@@ -103,13 +106,24 @@ const Gameboard = () => {
       board[x][y] = 'O';
     }
   };
+  const reset = () => {
+    console.log('gameboard reset');
+    totalHits = 17;
+    allSunk = false;
+    ships = [];
+    board = [];
 
+    createGameboard();
+
+    populateBoard(startingPieces);
+  };
   return {
     board,
     ships,
     receiveAttack,
     getTotalHits,
     getAllSunk,
+    reset,
   };
 };
 export default Gameboard;
